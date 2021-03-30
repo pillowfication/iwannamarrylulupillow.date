@@ -56,6 +56,7 @@ const Index = (): React.ReactElement => {
     cow1: 'moo',
     cow2: 'moo',
     cow3: 'moo',
+    covid: 'no',
     comments: '',
     balloons: false
   })
@@ -139,6 +140,13 @@ const Index = (): React.ReactElement => {
     setForm({
       ...form,
       cow3: event.target.value as string
+    })
+  }
+
+  const onInputCovid = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setForm({
+      ...form,
+      covid: event.target.value
     })
   }
 
@@ -279,6 +287,21 @@ const Index = (): React.ReactElement => {
               </Select>
             </Grid>
           </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography><b>Have you been vaccinated for COVID-19?</b></Typography>
+          <RadioGroup row value={form.covid} onChange={onInputCovid}>
+            <FormControlLabel
+              control={<Radio />}
+              value='no'
+              label='No'
+            />
+            <FormControlLabel
+              control={<Radio />}
+              value='yes'
+              label='Yes'
+            />
+          </RadioGroup>
         </Grid>
         <Grid item xs={12}>
           <Typography><b>Is there anything else I should know about you?</b></Typography>
